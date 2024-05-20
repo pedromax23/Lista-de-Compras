@@ -7,7 +7,7 @@ import CompraList from './components/CompraList/CompraList'
 
 function App() {
   const [locaciones, setLocaciones] = useState([])
-  const [locacion, setLocacion] = useState(null)
+  const [locacion, setLocacion] = useState({})
   const [compras, setCompras] = useState([])
 
   useEffect(() => {
@@ -49,7 +49,7 @@ function App() {
 
   const manejarCambioLocacion = (locacionNombre) => {
     const locacionSeleccionada = locaciones.find(loc => loc.nombre === locacionNombre)
-    setLocacion(locacionSeleccionada || null)
+    setLocacion(locacionSeleccionada || {})
   }
 
   const eliminarLocacion = async (id) => {
@@ -64,7 +64,7 @@ function App() {
 
       if (response.ok) {
         setLocaciones(prev => prev.filter(loc => loc.id !== id))
-        setLocacion(null)
+        setLocacion({})
       } else {
         console.error('Error al eliminar locación:', response.statusText)
       }
@@ -73,14 +73,14 @@ function App() {
     }
   }
 
-  const agregarCompra = async (compra) => {
+  const agregarCompra = async (nombre) => {
     try {
       const response = await fetch('http://localhost:4000/compras/agregar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nombre: compra, locacion_id: locacion.id }),
+        body: JSON.stringify({ nombre: nombre, locacion_id: locacion.id }),
       })
 
       if (response.ok) {
