@@ -1,0 +1,15 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 5px auto;
+    align-items: center;
+    border-bottom: 1px solid;
+}
