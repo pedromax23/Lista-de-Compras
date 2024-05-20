@@ -2,8 +2,6 @@ body {
     font-family: sans-serif;
 }
 
-
-
 form {
     display: flex;
     flex-direction: column;
@@ -42,7 +40,26 @@ select {
 }
 
 .nombre_locacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.nombre_locacion button {
+    height: 50px;
+}
+
+.nombre_locacion h3 {
     font-size: 40px;
     text-align: center;
     text-decoration: underline;
+    
+}
+
+@media (min-width: 768px) {
+    body {
+        width: 50%;
+        margin: auto;
+    }
 }

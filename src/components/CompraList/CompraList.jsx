@@ -5,8 +5,8 @@ function CompraList({ compras, eliminarCompra }) {
         <ul>
             {compras.map((compra, id) => (
                 <li key={'compra' + id}>
-                    {compra}
-                    <button onClick={() => eliminarCompra(id)}>Eliminar</button>
+                    {compra.nombre}
+                    <button onClick={() => eliminarCompra(compra.id)}>Eliminar</button>
                 </li>
             ))}
         </ul>

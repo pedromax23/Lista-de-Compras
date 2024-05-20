@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import LocacionForm from './components/LocacionForm/LocacionForm'
 import LocacionSelect from './components/LocacionSelect/LocacionSelect'
@@ -7,15 +7,38 @@ import CompraList from './components/CompraList/CompraList'
 
 function App() {
   const [locaciones, setLocaciones] = useState([])
-  const [locacion, setLocacion] = useState({})
-  const [compra, setCompra] = useState('')
+  const [locacion, setLocacion] = useState('')
+  const [compras, setCompras] = useState([])
 
-  const agregarLocacion = (newLocacion) => {
-    const nuevaLocacion = {
-      nombre: newLocacion,
-      compras: []
+  useEffect(() => {
+    fetch('http://localhost:4000/locaciones').then(res => res.json())
+      .then(data => setLocaciones(data.data))
+  }, [locacion])
+
+  useEffect(() => {
+    fetch('http://localhost:4000/compras?locacion_id=' + locacion.id).then(res => res.json())
+      .then(data => setCompras(data.data))
+  }, [locacion, compras])
+
+  const agregarLocacion = async (newLocacion) => {
+    try {
+      const response = await fetch('http://localhost:4000/locaciones/crear', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nombre: newLocacion }),
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setLocacion(data.data)
+      } else {
+        console.error('Error al agregar locación:', response.statusText)
+      }
+    } catch (error) {
+      console.error('Error de red al agregar locación:', error)
     }
-    setLocaciones([...locaciones, nuevaLocacion])
   }
 
   const manejarCambioLocacion = (locacionNombre) => {
@@ -23,49 +46,60 @@ function App() {
     setLocacion(locacionSeleccionada || {})
   }
 
-  const agregarCompra = (compra) => {
-    if (locacion.nombre) {
-      const locacionActualizada = {
-        ...locacion,
-        compras: [...locacion.compras, compra]
+  const eliminarLocacion = async (id) => {
+    const eliminarLocacion = await fetch('http://localhost:4000/locaciones/eliminar', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: id }),
+    })
+    setLocacion('')
+  }
+
+  const agregarCompra = async (compra) => {
+    try {
+      const response = await fetch('http://localhost:4000/compras/agregar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nombre: compra, locacion_id: locacion.id }),
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setCompras([...compras])
+      } else {
+        console.error('Error al agregar compra:', response.statusText)
       }
-
-      const nuevasLocaciones = locaciones.map(loc =>
-        loc.nombre === locacion.nombre ? locacionActualizada : loc
-      )
-
-      setLocaciones(nuevasLocaciones)
-      setLocacion(locacionActualizada)
+    } catch (error) {
+      console.error('Error de red al agregar compra:', error)
     }
   }
 
-  const eliminarCompra = (indice) => {
-    if (locacion.nombre) {
-      const locacionActualizada = {
-        ...locacion,
-        compras: locacion.compras.filter((_, id) => id !== indice)
-      }
+  const eliminarCompra = async (id) => {
+    const eliminarCompra = await fetch('http://localhost:4000/compras/eliminar?id=' + id).then(res => res.json())
 
-      const nuevasLocaciones = locaciones.map(loc =>
-        loc.nombre === locacion.nombre ? locacionActualizada : loc
-      )
-
-      setLocaciones(nuevasLocaciones)
-      setLocacion(locacionActualizada)
-    }
+    setCompras([...compras])
   }
+
+
 
   return (
     <>
       <LocacionForm agregarLocacion={agregarLocacion} />
-      <LocacionSelect locaciones={locaciones} manejarCambioLocacion={manejarCambioLocacion} />
+      <LocacionSelect locaciones={locaciones} locacion={locacion} manejarCambioLocacion={manejarCambioLocacion} />
       <section className='section_info'>
-        <h3 className='nombre_locacion'>{locacion.nombre}</h3>
-        {locacion.compras && 
-        <>
-          <CompraForm compra={compra} setCompra={setCompra} agregarCompra={agregarCompra} />
-          <CompraList compras={locacion.compras} eliminarCompra={eliminarCompra} />
-        </>
+        {locacion.nombre &&
+          <>
+            <div className='nombre_locacion'>
+              <h3>{locacion.nombre}</h3>
+              <button onClick={() => eliminarLocacion(locacion.id)}>Eliminar Locación</button>
+            </div>
+            <CompraForm agregarCompra={agregarCompra} />
+            <CompraList compras={compras} eliminarCompra={eliminarCompra} />
+          </>
         }
       </section>
     </>
