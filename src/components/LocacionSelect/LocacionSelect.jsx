@@ -1,10 +1,14 @@
+
 function LocacionSelect({ locaciones, manejarCambioLocacion, locacion }) {
+
+
   const handleChange = (e) => {
     manejarCambioLocacion(e.target.value)
   }
 
   return (
     <form>
+      <label htmlFor="locacion">Elejir la Locación</label>
       <select value={locacion ? locacion.nombre : ''} name="locacion" id="locacion" onChange={handleChange}>
         <option value="">Elegir</option>
         {locaciones.map((loc, id) => (

@@ -96,8 +96,12 @@ function App() {
 
   const eliminarCompra = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/compras/eliminar?id=${id}`, {
+      const response = await fetch(`http://localhost:4000/compras/eliminar`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: id }),
       })
 
       if (response.ok) {
@@ -112,7 +116,7 @@ function App() {
 
   return (
     <>
-      <LocacionForm agregarLocacion={agregarLocacion} />
+      <LocacionForm locaciones={locaciones} agregarLocacion={agregarLocacion} />
       <LocacionSelect locaciones={locaciones} locacion={locacion} manejarCambioLocacion={manejarCambioLocacion} />
       <section className='section_info'>
         {locacion && locacion.nombre &&
