@@ -13,7 +13,7 @@ function App() {
   const [compras, setCompras] = useState([])
 
   useEffect(() => {
-    fetch('https://comprasapi-production.up.railway.app/')
+    fetch('https://comprasapi-production.up.railway.app/locaciones')
       .then(res => res.json())
       .then(data => setLocaciones(data.data))
       .catch(error => console.error('Error al obtener locaciones:', error))
