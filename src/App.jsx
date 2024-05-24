@@ -14,10 +14,18 @@ function App() {
 
   useEffect(() => {
     fetch('https://comprasapi-production.up.railway.app/locaciones')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then(data => setLocaciones(data.data))
-      .catch(error => console.error('Error al obtener locaciones:', error))
-  }, [])
+      .catch(error => {
+        console.error('Error al obtener locaciones:', error);
+        alert('Hubo un problema al obtener las locaciones. Por favor, intenta nuevamente más tarde.');
+      });
+  }, []);
 
   useEffect(() => {
     if (locacion && locacion.id) {
