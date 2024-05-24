@@ -13,7 +13,7 @@ function App() {
   const [compras, setCompras] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:4000/locaciones')
+    fetch('https://comprasapi-production.up.railway.app/')
       .then(res => res.json())
       .then(data => setLocaciones(data.data))
       .catch(error => console.error('Error al obtener locaciones:', error))
@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     if (locacion && locacion.id) {
-      fetch(`http://localhost:4000/compras?locacion_id=${locacion.id}`)
+      fetch(`https://comprasapi-production.up.railway.app/compras?locacion_id=${locacion.id}`)
         .then(res => res.json())
         .then(data => setCompras(data.data))
         .catch(error => console.error('Error al obtener compras:', error))
@@ -30,7 +30,7 @@ function App() {
 
   const agregarLocacion = async (newLocacion) => {
     try {
-      const response = await fetch('http://localhost:4000/locaciones/crear', {
+      const response = await fetch('https://comprasapi-production.up.railway.app/locaciones/crear', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function App() {
 
   const eliminarLocacion = async (id) => {
     try {
-      const response = await fetch('http://localhost:4000/locaciones/eliminar', {
+      const response = await fetch('https://comprasapi-production.up.railway.app/locaciones/eliminar', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ function App() {
 
   const agregarCompra = async (nombre) => {
     try {
-      const response = await fetch('http://localhost:4000/compras/agregar', {
+      const response = await fetch('https://comprasapi-production.up.railway.app/compras/agregar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ function App() {
 
   const eliminarCompra = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/compras/eliminar`, {
+      const response = await fetch(`https://comprasapi-production.up.railway.app/compras/eliminar`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
