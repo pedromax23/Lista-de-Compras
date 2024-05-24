@@ -1,0 +1,30 @@
+.info_section {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 50% 0;
+}
+
+.boton_volver {
+    width: 90%;
+    margin: 10px auto;
+}
+
+.volver {
+    display: block;
+    padding: 15px;
+    border: 1px solid white;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+.informacion {
+    width: 90%;
+    margin: auto;
+}
+
+.informacion h4 {
+    font-size: 20px;
+}

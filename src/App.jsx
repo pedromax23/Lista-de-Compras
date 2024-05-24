@@ -5,6 +5,8 @@ import LocacionSelect from './components/LocacionSelect/LocacionSelect'
 import CompraForm from './components/CompraForm/CompraForm'
 import CompraList from './components/CompraList/CompraList'
 
+import { Link } from 'react-router-dom'
+
 function App() {
   const [locaciones, setLocaciones] = useState([])
   const [locacion, setLocacion] = useState({})
@@ -116,20 +118,27 @@ function App() {
 
   return (
     <>
-      <LocacionForm locaciones={locaciones} agregarLocacion={agregarLocacion} />
-      <LocacionSelect locaciones={locaciones} locacion={locacion} manejarCambioLocacion={manejarCambioLocacion} />
-      <section className='section_info'>
-        {locacion && locacion.nombre &&
-          <>
-            <div className='nombre_locacion'>
-              <h3>{locacion.nombre}</h3>
-              <button onClick={() => eliminarLocacion(locacion.id)}>Eliminar Locación</button>
-            </div>
-            <CompraForm agregarCompra={agregarCompra} />
-            <CompraList compras={compras} eliminarCompra={eliminarCompra} />
-          </>
-        }
-      </section>
+      <div className='main_div'>
+
+        <h1 className='titulo'>Anota tus compras</h1>
+
+        <LocacionForm locaciones={locaciones} agregarLocacion={agregarLocacion} />
+        <LocacionSelect locaciones={locaciones} locacion={locacion} manejarCambioLocacion={manejarCambioLocacion} />
+        <section className='section_info'>
+          {locacion && locacion.nombre &&
+            <>
+              <div className='nombre_locacion'>
+                <h3>{locacion.nombre}</h3>
+                <button onClick={() => eliminarLocacion(locacion.id)}>Eliminar Locación</button>
+              </div>
+              <CompraForm agregarCompra={agregarCompra} />
+              <CompraList compras={compras} eliminarCompra={eliminarCompra} />
+            </>
+          }
+        </section>
+      </div>
+
+      <Link className='info_version' to={'/info-V1.1'}>Informacion de la proxima versión</Link>
     </>
   )
 }

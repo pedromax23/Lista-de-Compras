@@ -6,7 +6,7 @@ function CompraList({ compras, eliminarCompra }) {
   }
 
   return (
-    <ul>
+    <ul className='lista_compras'>
       {compras.map((compra, id) => (
         <li key={'compra' + id}>
           {compra.nombre || 'Compra sin nombre'}
