@@ -17,7 +17,7 @@ function Login() {
       errors
     }
   } = useForm();
-  const { signin, errors: signinErrors, isAuthenticated, loadig, user } = useAuth()
+  const { signin, errors: signinErrors, isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
