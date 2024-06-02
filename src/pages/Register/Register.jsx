@@ -32,13 +32,6 @@ function Register() {
 
             <h2 className='register_title'>Register</h2>
 
-            {
-                registerErrors.map((error, i) => (
-                    <div key={'error' + i}>
-                        {error.msg}
-                    </div>
-                ))
-            }
             <form className='register_form' onSubmit={onSubmit}>
 
                 <input
@@ -48,7 +41,7 @@ function Register() {
                 />
                 {
                     errors.email && (
-                        <p>Email requerido</p>
+                        <p className='message'>Email requerido</p>
                     )
                 }
 
@@ -59,10 +52,17 @@ function Register() {
                 />
                 {
                     errors.password && (
-                        <p>Contraseña requerido</p>
+                        <p className='message'>Contraseña requerido</p>
                     )
                 }
 
+                {
+                    registerErrors.map((error, i) => (
+                        <div key={'error' + i}>
+                            <p className='message'>{error.msg}</p>
+                        </div>
+                    ))
+                }
                 <button className='register_buton'>
                     Register
                 </button>

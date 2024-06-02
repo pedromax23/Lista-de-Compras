@@ -1,12 +1,14 @@
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../context/AuthContex';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import './Login.css'
 
 
 function Login() {
+
+  const [prossesLogin, setProssesLogin] = useState(false)
 
   const {
     register,
@@ -15,7 +17,7 @@ function Login() {
       errors
     }
   } = useForm();
-  const { signin, errors: signinErrors, isAuthenticated } = useAuth()
+  const { signin, errors: signinErrors, isAuthenticated, loadig, user } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -23,7 +25,9 @@ function Login() {
   }, [isAuthenticated])
 
   const onSubmit = handleSubmit(async (data) => {
-    const res = signin(data)
+    setProssesLogin(true)
+    const res = await signin(data)
+    setProssesLogin(false)
     navigate('/compras')
   })
 
@@ -34,13 +38,6 @@ function Login() {
 
       <h2 className='title_login'>Login</h2>
 
-      {
-        signinErrors.map((error, i) => (
-          <div key={'error' + i}>
-            {error.msg}
-          </div>
-        ))
-      }
 
       <section>
         <form className='login_form' onSubmit={onSubmit}>
@@ -49,10 +46,10 @@ function Login() {
             placeholder='Email...'
             type="email"
             {...register('email', { required: true })}
-          />
+            />
           {
             errors.email && (
-              <p>Email requerido</p>
+              <p className='message'>Email requerido</p>
             )
           }
 
@@ -60,10 +57,23 @@ function Login() {
             placeholder='Contraseña...'
             type="password"
             {...register('password', { required: true })}
-          />
+            />
           {
             errors.password && (
-              <p>Contraseña requerido</p>
+              <p className='message'>Contraseña requerido</p>
+            )
+          }
+
+          {
+            signinErrors.map((error, i) => (
+              <div key={'error' + i}>
+                <p className='message'>{error.msg}</p>
+              </div>
+            ))
+          }
+          {
+            prossesLogin && (
+              <p className='message'>Loading...</p>
             )
           }
 

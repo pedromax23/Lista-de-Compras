@@ -23,8 +23,6 @@ function Inicio() {
   const { user } = useAuth()
   const { id: idUsuario } = user
 
-  const API_URL = import.meta.env.VITE_API_URL_LOCAL
-
   // Buscando locaciones
   useEffect(() => {
     async function findLocation(id) {

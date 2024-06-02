@@ -1,19 +1,21 @@
 import './CompraList.css'
 
 function CompraList({ compras, eliminarCompra }) {
-  if (!compras || !Array.isArray(compras)) {
-    return <p>No hay compras disponibles.</p>;
-  }
+  
+  let contenido = compras.length > 0 ? <ul className='lista_compras'>
+
+    {compras.map((compra, id) => (
+      <li key={'compra' + id}>
+        {compra.nombre || 'Compra sin nombre'}
+        <button onClick={() => eliminarCompra(compra.id)}>Eliminar</button>
+      </li>
+    ))}
+  </ul> : <></>
 
   return (
-    <ul className='lista_compras'>
-      {compras.map((compra, id) => (
-        <li key={'compra' + id}>
-          {compra.nombre || 'Compra sin nombre'}
-          <button onClick={() => eliminarCompra(compra.id)}>Eliminar</button>
-        </li>
-      ))}
-    </ul>
+    <>
+      {contenido}
+    </>
   )
 }
 
