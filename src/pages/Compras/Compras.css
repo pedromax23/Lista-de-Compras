@@ -82,6 +82,10 @@ span {
 
 @media (min-width: 768px) {
     .main_div {
+        max-width: 600px;
+        margin: auto;
+    }
+    .main_div {
         width: 50%;
         margin: auto;
     }

@@ -36,3 +36,11 @@
     text-decoration: none;
     width: 50%;
 }
+
+
+@media (min-width: 768px) {
+    .main_header {
+        max-width: 600px;
+        margin: auto;
+    }
+}

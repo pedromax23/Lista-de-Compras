@@ -33,3 +33,10 @@
 .link_to_login a {
     color: #28A745;
 }
+
+@media (min-width: 768px) {
+    .main_div_register {
+        max-width: 600px;
+        margin: auto;
+    }
+}

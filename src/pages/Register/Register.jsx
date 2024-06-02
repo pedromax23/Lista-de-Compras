@@ -26,7 +26,7 @@ function Register() {
     })
 
     return (
-        <div>
+        <div className='main_div_register'>
 
             <Link className='link_to_inicio' to={'/'}>Inicio</Link>
 

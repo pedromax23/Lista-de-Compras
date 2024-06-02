@@ -8,17 +8,18 @@ function InfoVersiones() {
                 <Link className='volver' to={'/'}>Volver</Link>
             </div>
             <div className='informacion'>
+
+                <p>
+                    LLego la versión 1.1 con el sistema de login y su nuevo diseño!!
+                </p>
+
                 <h4>Información proxima versión</h4>
-                <p>En la versión 1.1 me agregaran las funciones: </p>
+                <p>En la versión 1.2 agregare las funciones: </p>
                 <ul>
                     <li>Boton para limpiar toda la lista de compras</li>
-                </ul>
-
-                <h4>Proximas actualizaciones</h4>
-                <p>En las proximas versiones: </p>
-                <ul>
-                    <li>Login de cuentas</li>
-                    <li>Compras compartidas</li>
+                    <li>Grupos</li>
+                    <li>En el inicio una seccion de comentarios para que puedan escribir y dejar opiniones y recomendaciones para mejorar la pagina</li>
+                    <li>Mejoras en el diseño responsive</li>
                 </ul>
             </div>
         </section>

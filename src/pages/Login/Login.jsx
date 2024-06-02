@@ -28,7 +28,7 @@ function Login() {
   })
 
   return (
-    <div>
+    <div className='main_div_login'>
 
       <Link className='link_to_inicio' to={'/'}>Inicio</Link>
 
