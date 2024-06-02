@@ -128,10 +128,10 @@ function Inicio() {
   const eliminarCompra = async (id) => {
     try {
       const res = await deleteCompra(id)
-      if (response.status === 200) {
+      if (res.status === 200) {
         setCompras(prev => prev.filter(compra => compra.id !== id))
       } else {
-        console.error('Error al eliminar compra:', response.statusText)
+        console.error('Error al eliminar compra:', res.statusText)
       }
     } catch (error) {
       console.error('Error de red al eliminar compra:', error)
