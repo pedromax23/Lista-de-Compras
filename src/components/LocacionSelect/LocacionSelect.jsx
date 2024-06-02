@@ -1,13 +1,13 @@
+import './LocacionSelect.css'
 
 function LocacionSelect({ locaciones, manejarCambioLocacion, locacion }) {
-
 
   const handleChange = (e) => {
     manejarCambioLocacion(e.target.value)
   }
 
   return (
-    <form>
+    <form className="elejirLocacion_form">
       <label htmlFor="locacion">Elejir la Locación</label>
       <select value={locacion ? locacion.nombre : ''} name="locacion" id="locacion" onChange={handleChange}>
         <option value="">Elegir</option>

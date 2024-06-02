@@ -1,0 +1,23 @@
+.elejirLocacion_form {
+    width: 90%;
+    margin: 10px auto;
+    background-color: #F8F9FA;
+    padding: 5px;
+    border-radius: 0.347rem;
+    color: #343A40;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.elejirLocacion_form label {
+    font-size: 20px;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+.elejirLocacion_form select {
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 0.347rem;
+}

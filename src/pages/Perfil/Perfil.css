@@ -1,0 +1,16 @@
+.buton_logout {
+    background-color: #007BFF;
+    color: #343A40;
+    font-size: 24px;
+    border: 1px solid;
+}
+
+.user_email {
+    color: #343A40;
+    width: 90%;
+    margin: auto;
+}
+
+.link_to_inicio {
+    margin: 5px 0;
+}

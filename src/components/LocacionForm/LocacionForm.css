@@ -1,0 +1,26 @@
+.main_form {
+    width: 90%;
+    margin: 10px auto;
+    background-color:  #F8F9FA;
+    padding: 5px;
+    border-radius: 0.347rem;
+    color: #343A40;
+}
+
+.main_form label {
+    text-decoration: underline;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.main_form input {
+    padding: 5px;
+    font-size: 18px;
+}
+
+.boton_agregarLocacion {
+    color: #343A40;
+    border: 1px solid;
+    font-size: 20px;
+    background-color: #007BFF;
+}   

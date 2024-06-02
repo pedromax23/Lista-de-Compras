@@ -1,0 +1,23 @@
+.form_compra {
+    color: #343A40;
+    background-color: #F8F9FA;
+    padding: 5px;
+    border-radius: 0.347rem;
+}
+
+.form_compra label {
+    font-size: 20px;
+    text-decoration: underline;
+    padding: 5px;
+}
+
+.form_compra input {
+    padding: 5px;
+    font-size: 18px;
+}
+
+.boton_agregarCompra {
+    color: #343A40;
+    background-color: #007BFF;
+    border: 1px solid black;
+}

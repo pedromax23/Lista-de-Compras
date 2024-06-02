@@ -14,7 +14,7 @@ function CompraForm({ agregarCompra }) {
   })
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className='form_compra' onSubmit={onSubmit}>
       <label htmlFor="compra">Agregar compra</label>
       <input
         type="text"
@@ -38,7 +38,7 @@ function CompraForm({ agregarCompra }) {
         errors.compra &&
         <span>{errors.compra.message}</span>
       }
-      <button type='submit'>Agregar</button>
+      <button className='boton_agregarCompra' type='submit'>Agregar</button>
     </form>
   )
 }

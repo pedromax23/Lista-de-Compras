@@ -1,0 +1,13 @@
+.div_nombre_boton {
+    color: #343A40;
+    background-color: #F8F9FA;
+    width: 90%;
+    margin: auto;
+    border-radius: 0.347rem;
+}
+
+.boton_eliminarLocacion {
+    color: #343A40;
+    background-color: #007BFF;
+    border: 1px solid black;
+}
