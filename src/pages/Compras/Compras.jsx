@@ -25,8 +25,10 @@ function Inicio() {
   const { user } = useAuth()
   const { id: idUsuario } = user
 
-  const cookies = Cookies.get()
-  console.log(cookies.token)
+  const cookies = document.cookie
+  // console.log(cookies.token)
+  
+  console.log(cookies)
 
   // Buscando locaciones
   useEffect(() => {
