@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
+
 import './Compras.css'
 import LocacionForm from '../../components/LocacionForm/LocacionForm'
 import LocacionSelect from '../../components/LocacionSelect/LocacionSelect'
@@ -22,6 +24,9 @@ function Inicio() {
 
   const { user } = useAuth()
   const { id: idUsuario } = user
+
+  const cookies = Cookies.get()
+  console.log(cookies)
 
   // Buscando locaciones
   useEffect(() => {
