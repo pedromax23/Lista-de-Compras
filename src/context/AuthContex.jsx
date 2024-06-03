@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { registerRequest, loginRequest, verityTokenRequest, logoutRequest } from '../api/auth';
 import Cookies from 'js-cookie'
-import { Navigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
@@ -66,33 +65,32 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         async function checkLogin() {
             const cookies = Cookies.get()
-
+        
             // Comprueba si no hay un token
             if (!cookies.token) {
                 setIsAuthenticated(false)
                 setLoadig(false);
                 return setUser(null)
             }
-
+            
             // Si hay token
             try {
-
+                
                 // Verificar si el token es valido
                 const res = await verityTokenRequest(cookies.token)
-
+                
                 // Si el backend no responde un dato
                 if (!res.data) {
                     setIsAuthenticated(false)
                     setLoadig(false);
                     return;
                 }
-
                 // Si el backend si responde un dato
                 setIsAuthenticated(true)
                 setUser(res.data)
                 setLoadig(false);
-            
-            // Si dio un error
+                
+                // Si dio un error
             } catch (error) {
                 setIsAuthenticated(false)
                 setUser(null)
@@ -101,6 +99,7 @@ export const AuthProvider = ({ children }) => {
         }
         checkLogin()
     }, [])
+
 
     return (
         <AuthContext.Provider value={{
