@@ -26,7 +26,7 @@ function Inicio() {
   const { id: idUsuario } = user
 
   const cookies = Cookies.get()
-  console.log(cookies)
+  console.log(cookies.token)
 
   // Buscando locaciones
   useEffect(() => {
